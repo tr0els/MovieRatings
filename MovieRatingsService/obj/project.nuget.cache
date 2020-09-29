@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "1EBNHk2ycHTB/4pP65z17g2/3izFVeJWG6WLqmiEsYyjcJW1AkBKYMO7Vf0H6TX9pfH3EzaJlX6QwFGFEfzEyw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\pc\\Dropbox\\Studie\\3. Semester\\SDM (Software Development Methods)\\MovieRatingsCompulsory\\MovieRatingsService\\MovieRatingsApplication.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pc\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\pc\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
