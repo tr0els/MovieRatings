@@ -1,9 +1,0 @@
-C:\Users\bhp\source\repos\SDM\2020E\Compulsory Assignment\MovieRatingsExample\MovieRatingsService\bin\Debug\netstandard2.0\MovieRatingsApplication.deps.json
-C:\Users\bhp\source\repos\SDM\2020E\Compulsory Assignment\MovieRatingsExample\MovieRatingsService\bin\Debug\netstandard2.0\MovieRatingsApplication.dll
-C:\Users\bhp\source\repos\SDM\2020E\Compulsory Assignment\MovieRatingsExample\MovieRatingsService\bin\Debug\netstandard2.0\MovieRatingsApplication.pdb
-C:\Users\bhp\source\repos\SDM\2020E\Compulsory Assignment\MovieRatingsExample\MovieRatingsService\obj\Debug\netstandard2.0\MovieRatingsApplication.csprojAssemblyReference.cache
-C:\Users\bhp\source\repos\SDM\2020E\Compulsory Assignment\MovieRatingsExample\MovieRatingsService\obj\Debug\netstandard2.0\MovieRatingsApplication.AssemblyInfoInputs.cache
-C:\Users\bhp\source\repos\SDM\2020E\Compulsory Assignment\MovieRatingsExample\MovieRatingsService\obj\Debug\netstandard2.0\MovieRatingsApplication.AssemblyInfo.cs
-C:\Users\bhp\source\repos\SDM\2020E\Compulsory Assignment\MovieRatingsExample\MovieRatingsService\obj\Debug\netstandard2.0\MovieRatingsApplication.csproj.CoreCompileInputs.cache
-C:\Users\bhp\source\repos\SDM\2020E\Compulsory Assignment\MovieRatingsExample\MovieRatingsService\obj\Debug\netstandard2.0\MovieRatingsApplication.dll
-C:\Users\bhp\source\repos\SDM\2020E\Compulsory Assignment\MovieRatingsExample\MovieRatingsService\obj\Debug\netstandard2.0\MovieRatingsApplication.pdb
