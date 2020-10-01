@@ -131,5 +131,21 @@ namespace MovieRatingsApplication.Core.Services
                 .Select(grp => grp.Reviewer)
                 .ToList();
         }
+
+        public List<int> GetTopRatedMovies(int amount)
+        {
+            return RatingsRepository.GetAllMovieRatings()
+                .GroupBy(r => r.Movie)
+                .Select(grp => new
+                {
+                    Movie = grp.Key,
+                    GradeAvg = grp.Average(x => x.Grade)
+                })
+                .OrderByDescending(grp => grp.GradeAvg)
+                .OrderByDescending(grp => grp.GradeAvg)
+                .Select(grp => grp.Movie)
+                .Take(amount)
+                .ToList();
+        }
     }
 }
