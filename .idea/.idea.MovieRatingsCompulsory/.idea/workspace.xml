@@ -20,15 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1677bb05-2c92-4151-9196-cb17528c29d8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MovieRatingsCompulsory/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MovieRatingsCompulsory/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MovieRatingsCompulsory/.idea/contentModel.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MovieRatingsCompulsory/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MovieRatingsCompulsory/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MovieRatingsCompulsory/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MovieRatingsCompulsory/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MovieRatingsCompulsory/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MovieRatingsCompulsory/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MovieRatingsCompulsory/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MovieRatingsCompulsory/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MovieRatingsService/Core/Services/MovieRatingsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MovieRatingsService/Core/Services/MovieRatingsService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/XUnitTestProject/MovieRatingsServiceTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/XUnitTestProject/MovieRatingsServiceTest.cs" afterDir="false" />
     </list>
@@ -70,7 +62,7 @@
       <option name="presentableId" value="Default" />
       <updated>1601538794585</updated>
       <workItem from="1601538799226" duration="540000" />
-      <workItem from="1601539360049" duration="4328000" />
+      <workItem from="1601539360049" duration="8434000" />
     </task>
     <servers />
   </component>

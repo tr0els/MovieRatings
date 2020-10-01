@@ -106,5 +106,30 @@ namespace MovieRatingsApplication.Core.Services
             if (number == 0) return 0;
             return Math.Round(totalGrade / number, 1);
         }
+
+        public int GetNumberOfRates(int movie, int grade)
+        {
+            return RatingsRepository
+                .GetAllMovieRatings()
+                .Where(m => m.Movie == movie)
+                .Count(g => g.Grade == grade);
+        }
+
+        public List<int> GetMostProductiveReviewers()
+        {
+            var reviews = RatingsRepository.GetAllMovieRatings()
+                .GroupBy(r => r.Reviewer)
+                .Select(group => new { 
+                    Reviewer = group.Key,
+                    MovieReviews = group.Count() 
+                });
+
+            int maxNumberReviews = reviews.Max(grp => grp.MovieReviews);
+
+            return reviews
+                .Where(grp => grp.MovieReviews == maxNumberReviews)
+                .Select(grp => grp.Reviewer)
+                .ToList();
+        }
     }
 }
