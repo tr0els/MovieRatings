@@ -3,6 +3,7 @@ using MovieRatingsApplication.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace MovieRatingsApplication.Core.Services
@@ -67,6 +68,43 @@ namespace MovieRatingsApplication.Core.Services
                 .Where(grp => grp.MovieGrade5 == max5)
                 .Select(grp => grp.Movie)
                 .ToList();
+        }
+
+        public double GetAverageRateFromReviewer(int reviewer)
+        {
+            var reviews = RatingsRepository.GetAllMovieRatings()
+                    .Where(r => r.Reviewer == reviewer);
+
+            double number = reviews.Count();
+            double totalGrade = reviews.Sum(review => review.Grade);
+            if (number == 0) return 0;
+            return Math.Round(totalGrade / number, 1);
+        }
+
+        public int GetNumberOfRatesByReviewer(int reviewer, int grade)
+        {
+            return RatingsRepository
+                .GetAllMovieRatings()
+                .Where(r => r.Reviewer == reviewer)
+                .Count(g => g.Grade == grade);
+        }
+
+        public int GetNumberOfReviews(int movie)
+        {
+            return RatingsRepository
+                .GetAllMovieRatings()
+                .Count(m => m.Movie == movie);
+        }
+
+        public double GetAverageRateOfMovie(int movie)
+        {
+            var reviews = RatingsRepository.GetAllMovieRatings()
+                .Where(m => m.Movie == movie);
+
+            double number = reviews.Count();
+            double totalGrade = reviews.Sum(review => review.Grade);
+            if (number == 0) return 0;
+            return Math.Round(totalGrade / number, 1);
         }
     }
 }
