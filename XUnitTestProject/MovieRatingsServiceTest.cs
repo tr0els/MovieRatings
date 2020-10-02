@@ -337,5 +337,63 @@ namespace XUnitTestProject
 
             Assert.Equal(new List<int>(expected), result);
         }
+        
+        // 10. On input N, what are the movies that reviewer N has reviewed? The list should be sorted decreasing by rate first, and date secondly.
+        [Theory]
+        [InlineData(0, new int[] {})]
+        [InlineData(1, new int[] { 2, 3 })]
+        [InlineData(2, new int[] { 1, 3, 4 })]
+        [InlineData(3, new int[] { 1, 4, 2, 6 })]
+        public void GetTopMoviesByReviewer(int reviewer, int[] expected)
+        {
+            ratings = new List<MovieRating>()
+            {
+                new MovieRating(1, 2, 3, DateTime.Now),     // movie 1 avg = 4                                                            
+                new MovieRating(1, 3, 2, DateTime.Now),     // movie 2 avg = 3
+                new MovieRating(2, 1, 4, DateTime.Now),     // movie 3 avg = 2.5
+                new MovieRating(2, 3, 3, DateTime.Now),     // movie 4 avg = 4.5
+                new MovieRating(2, 4, 3, DateTime.Now.AddDays(-1)),
+                new MovieRating(3, 4, 3, DateTime.Now),
+                new MovieRating(3, 1, 5, DateTime.Now),
+                new MovieRating(3, 2, 3, DateTime.Now.AddDays(-1)),
+                new MovieRating(3, 6, 3, DateTime.Now.AddDays(-3))
+            };
+            
+            MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
+            
+            var result = mrs.GetTopMoviesByReviewer(reviewer);
+
+            Assert.Equal(new List<int>(expected), result);
+        }
+        
+        // 11. On input N, who are the reviewers that have reviewed movie N? The list should be sorted decreasing by rate first, and date secondly.
+        [Theory]
+        [InlineData(0, new int[] {})]
+        [InlineData(1, new int[] { 3, 2 })]
+        [InlineData(2, new int[] { 1, 3 })]
+        [InlineData(3, new int[] { 2, 1 })]
+        [InlineData(4, new int[] { 3, 2 })]
+        [InlineData(6, new int[] { 3 })]
+        public void GetReviewersByMovie(int movie, int[] expected)
+        {
+            ratings = new List<MovieRating>()
+            {
+                new MovieRating(1, 2, 3, DateTime.Now),     // movie 1 avg = 4                                                            
+                new MovieRating(1, 3, 2, DateTime.Now),     // movie 2 avg = 3
+                new MovieRating(2, 1, 4, DateTime.Now),     // movie 3 avg = 2.5
+                new MovieRating(2, 3, 3, DateTime.Now),     // movie 4 avg = 4.5
+                new MovieRating(2, 4, 3, DateTime.Now.AddDays(-1)),
+                new MovieRating(3, 4, 3, DateTime.Now),
+                new MovieRating(3, 1, 5, DateTime.Now),
+                new MovieRating(3, 2, 3, DateTime.Now.AddDays(-1)),
+                new MovieRating(3, 6, 3, DateTime.Now.AddDays(-3))
+            };
+            
+            MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
+            
+            var result = mrs.GetReviewersByMovie(movie);
+
+            Assert.Equal(new List<int>(expected), result);
+        }
     }
 }

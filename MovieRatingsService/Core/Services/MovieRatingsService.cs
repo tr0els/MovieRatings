@@ -146,5 +146,25 @@ namespace MovieRatingsApplication.Core.Services
                 .Take(amount)
                 .ToList();
         }
+
+        public List<int> GetTopMoviesByReviewer(int reviewer)
+        {
+            return RatingsRepository.GetAllMovieRatings()
+                .Where(r => r.Reviewer == reviewer)
+                .OrderByDescending(grp => grp.Grade)
+                .ThenByDescending(grp => grp.Date)
+                .Select(grp => grp.Movie)
+                .ToList();
+        }
+
+        public List<int> GetReviewersByMovie(int movie)
+        {
+            return RatingsRepository.GetAllMovieRatings()
+                .Where(m => m.Movie == movie)
+                .OrderByDescending(grp => grp.Grade)
+                .ThenByDescending(grp => grp.Date)
+                .Select(grp => grp.Reviewer)
+                .ToList();
+        }
     }
 }
