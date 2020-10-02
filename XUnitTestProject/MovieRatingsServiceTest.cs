@@ -336,6 +336,7 @@ namespace XUnitTestProject
             var result = mrs.GetTopRatedMovies(n);
 
             Assert.Equal(new List<int>(expected), result);
+            repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
         }
         
         // 10. On input N, what are the movies that reviewer N has reviewed? The list should be sorted decreasing by rate first, and date secondly.
@@ -364,6 +365,7 @@ namespace XUnitTestProject
             var result = mrs.GetTopMoviesByReviewer(reviewer);
 
             Assert.Equal(new List<int>(expected), result);
+            repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
         }
         
         // 11. On input N, who are the reviewers that have reviewed movie N? The list should be sorted decreasing by rate first, and date secondly.
@@ -394,6 +396,7 @@ namespace XUnitTestProject
             var result = mrs.GetReviewersByMovie(movie);
 
             Assert.Equal(new List<int>(expected), result);
+            repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
         }
     }
 }
