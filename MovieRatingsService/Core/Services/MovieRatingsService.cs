@@ -130,21 +130,20 @@ namespace MovieRatingsApplication.Core.Services
                 .Where(grp => grp.MovieReviews == maxNumberReviews)
                 .Select(grp => grp.Reviewer)
                 .ToList();
-        }
-
-        public List<int> GetTopRatedMovies(int limit)
+        } 
+        
+        public List<int> GetTopRatedMovies(int amount)
         {
-            var movieList = RatingsRepository.GetAllMovieRatings();
-            
-            return movieList
-                .GroupBy(m => m.Movie)
-                .Select(group => new { 
-                    Movie = group.Key,
-                    MovieAverageRating = GetAverageRateOfMovie(group.Key) 
+            return RatingsRepository.GetAllMovieRatings()
+                .GroupBy(r => r.Movie)
+                .Select(grp => new
+                {
+                    Movie = grp.Key,
+                    GradeAvg = grp.Average(x => x.Grade)
                 })
-                .OrderByDescending(m => m.MovieAverageRating)
-                .Take(limit)
+                .OrderByDescending(grp => grp.GradeAvg)
                 .Select(grp => grp.Movie)
+                .Take(amount)
                 .ToList();
         }
     }
