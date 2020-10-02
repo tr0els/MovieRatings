@@ -314,12 +314,8 @@ namespace XUnitTestProject
         }
         
         // 9. On input N, what is top N of movies? The score of a movie is its average rate.
-        [Theory]
-        [InlineData(1, 0)]
-        [InlineData(2, 1)]
-        [InlineData(3, 4)]
-        [InlineData(6, 2)]
-        public void GetTopRatedMovies(int amount, int expected)
+        [Fact]
+        public void GetTopRatedMovies()
         {
             ratings = new List<MovieRating>()
             {
@@ -335,12 +331,14 @@ namespace XUnitTestProject
             
             MovieRatingsService mrs = new MovieRatingsService(repoMock.Object);
             
+            List<int> expected = new List<int>(){ 2, 1, 4, 3 };
+            
             // act
-            //var result = mrs.GetMostProductiveReviewers();
+            var result = mrs.GetTopRatedMovies(4);
 
             // assert
-            //Assert.Equal(expected, result);
-            repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
+            Assert.Equal(expected, result);
+            repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.AtMost(5));
         }
     }
 }

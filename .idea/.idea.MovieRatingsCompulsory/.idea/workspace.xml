@@ -35,8 +35,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/MovieRatingsService/Core/Services/MovieRatingsService.cs" />
         <option value="$PROJECT_DIR$/XUnitTestProject/MovieRatingsServiceTest.cs" />
+        <option value="$PROJECT_DIR$/MovieRatingsService/Core/Services/MovieRatingsService.cs" />
       </list>
     </option>
   </component>
@@ -62,7 +62,7 @@
       <option name="presentableId" value="Default" />
       <updated>1601538794585</updated>
       <workItem from="1601538799226" duration="540000" />
-      <workItem from="1601539360049" duration="8434000" />
+      <workItem from="1601539360049" duration="10016000" />
     </task>
     <servers />
   </component>
