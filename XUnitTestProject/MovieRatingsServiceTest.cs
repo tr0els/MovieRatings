@@ -1,24 +1,22 @@
-using FluentAssertions;
 using Moq;
 using MovieRatingsApplication.Core.Interfaces;
 using MovieRatingsApplication.Core.Model;
 using MovieRatingsApplication.Core.Services;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using Xunit;
 
 namespace XUnitTestProject
 {
     public class MovieRatingsServiceTest
     {
-        private List<MovieRating> ratings = null;
+        private MovieRating[] _ratings = null;
         private Mock<IMovieRatingsRepository> repoMock;
 
         public MovieRatingsServiceTest()
         {
             repoMock = new Mock<IMovieRatingsRepository>();
-            repoMock.Setup(repo => repo.GetAllMovieRatings()).Returns(() => ratings);
+            repoMock.Setup(repo => repo.Ratings).Returns(() => _ratings);
         }
 
         // returns the number movies which have got the grade N.
@@ -30,7 +28,7 @@ namespace XUnitTestProject
         public void NumberOfMoviesWithGrade(int grade, int expected)
         {
             // arrange
-            ratings = new List<MovieRating>()
+            _ratings = new MovieRating[]
             {
                 new MovieRating(1, 1, 3, DateTime.Now),
                 new MovieRating(2, 1, 3, DateTime.Now),
@@ -47,7 +45,7 @@ namespace XUnitTestProject
 
             // assert
             Assert.Equal(expected, result);
-            repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
+            repoMock.Verify(repo => repo.Ratings, Times.Once);
         }
 
         [Theory]
@@ -80,7 +78,7 @@ namespace XUnitTestProject
         public void GetNumberOfReviewsFromReviewer(int reviewer, int expected)
         {
             // arrange
-            ratings = new List<MovieRating>()
+            _ratings = new MovieRating[]
             {
                 new MovieRating(2, 1, 3, DateTime.Now),
                 new MovieRating(3, 1, 4, DateTime.Now),
@@ -96,7 +94,7 @@ namespace XUnitTestProject
 
             // assert
             Assert.Equal(expected, result);
-            repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
+            repoMock.Verify(repo => repo.Ratings, Times.Once);
         }
         
         // 2. On input N, what is the average rate that reviewer N had given?
@@ -110,7 +108,7 @@ namespace XUnitTestProject
         {
             // arrange
             
-            ratings = new List<MovieRating>()
+            _ratings = new MovieRating[]
             {
                 new MovieRating(2, 1, 3, DateTime.Now),
                 new MovieRating(3, 1, 4, DateTime.Now),
@@ -129,7 +127,7 @@ namespace XUnitTestProject
             
             // assert
             Assert.Equal(expected, result);
-            repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
+            repoMock.Verify(repo => repo.Ratings, Times.Once);
         }
         
         // 3. On input N and R, how many times has reviewer N given rate R?
@@ -140,7 +138,7 @@ namespace XUnitTestProject
         public void GetNumberOfRatesByReviewer(int reviewer, int rating, int expected)
         {
             // arrange
-            ratings = new List<MovieRating>()
+            _ratings = new MovieRating[]
             {
                 new MovieRating(1, 1, 1, DateTime.Now),
                 new MovieRating(2, 2, 3, DateTime.Now),
@@ -158,7 +156,7 @@ namespace XUnitTestProject
 
             // assert
             Assert.Equal(expected, result);
-            repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
+            repoMock.Verify(repo => repo.Ratings, Times.Once);
         }
         
         // 4. On input N, how many have reviewed movie N?
@@ -171,7 +169,7 @@ namespace XUnitTestProject
         public void GetNumberOfReviews(int movie, int expected)
         {
             // arrange
-            ratings = new List<MovieRating>()
+            _ratings = new MovieRating[]
             {
                 new MovieRating(1, 2, 3, DateTime.Now),
                 new MovieRating(3, 3, 4, DateTime.Now),
@@ -190,7 +188,7 @@ namespace XUnitTestProject
 
             // assert
             Assert.Equal(expected, result);
-            repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
+            repoMock.Verify(repo => repo.Ratings, Times.Once);
         }
         
         // 5. On input N, what is the average rate the movie N had received?
@@ -203,7 +201,7 @@ namespace XUnitTestProject
         public void GetAverageRateOfMovie(int movie, double expected)
         {
             // arrange
-            ratings = new List<MovieRating>()
+            _ratings = new MovieRating[]
             {
                 new MovieRating(3, 2, 3, DateTime.Now),
                 new MovieRating(3, 5, 3, DateTime.Now),
@@ -223,7 +221,7 @@ namespace XUnitTestProject
 
             // assert
             Assert.Equal(expected, result);
-            repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
+            repoMock.Verify(repo => repo.Ratings, Times.Once);
         }
         
         // 6. On input N and R, how many times had movie N received rate R?
@@ -237,7 +235,7 @@ namespace XUnitTestProject
         public void GetNumberOfRates(int movie, int rating, int expected)
         {
             // arrange
-            ratings = new List<MovieRating>()
+            _ratings = new MovieRating[]
             {
                 new MovieRating(1, 1, 1, DateTime.Now),
                 new MovieRating(2, 2, 3, DateTime.Now),
@@ -256,14 +254,14 @@ namespace XUnitTestProject
 
             // assert
             Assert.Equal(expected, result);
-            repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
+            repoMock.Verify(repo => repo.Ratings, Times.Once);
         }
 
         // 7. What is the id(s) of the movie(s) with the highest number of top rates (5)? 
         [Fact]
         public void GetMoviesWithHighestNumberOfTopRates()
         {
-            ratings = new List<MovieRating>()
+            _ratings = new MovieRating[]
             {
                 new MovieRating(1, 1, 5, DateTime.Now),
                 new MovieRating(1, 2, 5, DateTime.Now),
@@ -282,14 +280,14 @@ namespace XUnitTestProject
 
             // assert
             Assert.Equal(expected, result);
-            repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
+            repoMock.Verify(repo => repo.Ratings, Times.Once);
         }
         
         // 8. What reviewer(s) had done most reviews?
         [Fact]
         public void GetMostProductiveReviewers()
         {
-            ratings = new List<MovieRating>()
+            _ratings = new MovieRating[]
             {
                 new MovieRating(1, 1, 5, DateTime.Now),
                 new MovieRating(1, 2, 5, DateTime.Now),
@@ -310,7 +308,7 @@ namespace XUnitTestProject
 
             // assert
             Assert.Equal(expected, result);
-            repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
+            repoMock.Verify(repo => repo.Ratings, Times.Once);
         }
 
         // 9. On input N, what is top N of movies? The score of a movie is its average rate.
@@ -321,7 +319,7 @@ namespace XUnitTestProject
         [InlineData(10, new int[] { 4, 1, 2, 3 })]
         public void GetTopRatedMovies(int n, int[] expected)
         {
-            ratings = new List<MovieRating>()
+            _ratings = new MovieRating[]
             {
                 new MovieRating(1, 2, 3, DateTime.Now),     // movie 1 avg = 4                                                            
                 new MovieRating(1, 3, 2, DateTime.Now),     // movie 2 avg = 3
@@ -336,7 +334,7 @@ namespace XUnitTestProject
             var result = mrs.GetTopRatedMovies(n);
 
             Assert.Equal(new List<int>(expected), result);
-            repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
+            repoMock.Verify(repo => repo.Ratings, Times.Once);
         }
         
         // 10. On input N, what are the movies that reviewer N has reviewed? The list should be sorted decreasing by rate first, and date secondly.
@@ -347,7 +345,7 @@ namespace XUnitTestProject
         [InlineData(3, new int[] { 1, 4, 2, 6 })]
         public void GetTopMoviesByReviewer(int reviewer, int[] expected)
         {
-            ratings = new List<MovieRating>()
+            _ratings = new MovieRating[]
             {
                 new MovieRating(1, 2, 3, DateTime.Now),     // movie 1 avg = 4                                                            
                 new MovieRating(1, 3, 2, DateTime.Now),     // movie 2 avg = 3
@@ -365,7 +363,7 @@ namespace XUnitTestProject
             var result = mrs.GetTopMoviesByReviewer(reviewer);
 
             Assert.Equal(new List<int>(expected), result);
-            repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
+            repoMock.Verify(repo => repo.Ratings, Times.Once);
         }
         
         // 11. On input N, who are the reviewers that have reviewed movie N? The list should be sorted decreasing by rate first, and date secondly.
@@ -378,7 +376,7 @@ namespace XUnitTestProject
         [InlineData(6, new int[] { 3 })]
         public void GetReviewersByMovie(int movie, int[] expected)
         {
-            ratings = new List<MovieRating>()
+            _ratings = new MovieRating[]
             {
                 new MovieRating(1, 2, 3, DateTime.Now),     // movie 1 avg = 4                                                            
                 new MovieRating(1, 3, 2, DateTime.Now),     // movie 2 avg = 3
@@ -396,7 +394,7 @@ namespace XUnitTestProject
             var result = mrs.GetReviewersByMovie(movie);
 
             Assert.Equal(new List<int>(expected), result);
-            repoMock.Verify(repo => repo.GetAllMovieRatings(), Times.Once);
+            repoMock.Verify(repo => repo.Ratings, Times.Once);
         }
     }
 }
