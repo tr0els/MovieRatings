@@ -171,7 +171,7 @@ namespace XUnitTestPerformance
             });
 
             _testOutputHelper.WriteLine(seconds.ToString());
-            Assert.True(seconds <= 5); // Test is just above 4. Result: 4.321 seconds
+            Assert.True(seconds <= _timeLimit);
         }
         
         [Fact]
